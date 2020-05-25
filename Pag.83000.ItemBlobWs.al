@@ -10,6 +10,7 @@ page 83100 ItemPictureWS
     SourceTable = Item;
     DelayedInsert = true;
     InsertAllowed = false;
+    ModifyAllowed = True;
     //SourceTableView = where("No." = filter(= '1896-S'));
 
     layout
@@ -58,6 +59,22 @@ page 83100 ItemPictureWS
         FileName: Text;
         PictureURL: Text;
 
+    trigger OnAfterGetCurrRecord()
+    begin
+        ExporItemPicture()
+    end;
+
+    trigger OnModifyRecord(): Boolean
+    begin
+        if Text.StrLen(PictureURL) > 0 then
+            UploadItemPictureUrl()
+        else
+            if Text.StrLen(Output) < 1 then
+                error('You must either provide a Picture URL or a Base64 Encoded Image')
+            else
+                ImportItemPicture();
+    end;
+
     local procedure ExporItemPicture()
     var
         index: Integer;
@@ -85,31 +102,12 @@ page 83100 ItemPictureWS
             end;
     end;
 
-    trigger OnAfterGetCurrRecord()
-    begin
-        ExporItemPicture()
-    end;
-
-    trigger OnModifyRecord(): Boolean
-    begin
-        if Text.StrLen(PictureURL) > 0 then
-            UploadItemPictureUrl()
-        else
-            if Text.StrLen(Output) < 1 then
-                error('You must either provide a Picture URL or a Base64 Encoded Image')
-            else
-                ImportItemPicture();
-    end;
-
     local procedure ImportItemPicture()
     var
-        index: Integer;
-        Media: Record "Tenant Media";
         TempBlob: Codeunit "Temp Blob";
         outstream: OutStream;
         instream: InStream;
         Base64: Codeunit "Base64 Convert";
-        decodedString: Text;
     begin
         if Text.StrLen(output) > 0 then begin
             if Picture.COUNT > 0 then
