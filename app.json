@@ -1,0 +1,38 @@
+{
+  "id": "72a7eb1b-0f7e-4f94-81a1-9acb32caa620",
+  "name": "Item Image Web Service",
+  "publisher": "Ethan Sorenson",
+  "version": "1.0.0.0",
+  "brief": "A web service for reading and writing Item Images through web services",
+  "description": "A web service for reading and writing Item Images through web services",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [
+    {
+      "id": "63ca2fa4-4f03-4f2b-a480-172fef340d3f",
+      "publisher": "Microsoft",
+      "name": "System Application",
+      "version": "16.0.0.0"
+    },
+    {
+      "id": "437dbf0e-84ff-417a-965d-ed2bb9650972",
+      "publisher": "Microsoft",
+      "name": "Base Application",
+      "version": "16.0.0.0"
+    }
+  ],
+  "screenshots": [],
+  "platform": "16.0.0.0",
+  "idRanges": [
+    {
+      "from": 83100,
+      "to": 83149
+    }
+  ],
+  "contextSensitiveHelpUrl": "https://eonesolutions.com/",
+  "showMyCode": true,
+  "runtime": "5.0"
+}
